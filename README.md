@@ -1,2 +1,2 @@
 # inspectorScandAll
-Vulnreability assessment system
+Vulnerability assessment system
