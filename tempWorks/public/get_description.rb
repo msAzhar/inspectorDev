@@ -1,4 +1,3 @@
-
 require 'open-uri' #URL'e HTTP isteğinde bulunur
 require 'nokogiri' #HTML'i parse etmeyi sağlar
 
