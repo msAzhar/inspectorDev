@@ -1,5 +1,5 @@
 $LOAD_PATH << '.'
-require 'get_description.rb'
+require 'get_description'
 
 def file_convert(srv_name)
 
@@ -12,11 +12,11 @@ def file_convert(srv_name)
   puts "Lütfen istediğiniz dosya tipini yazınız: "
   type = gets.chomp
 
-  description = Description.get_description(srv_name)
+  cve,description = Description.get_description(srv_name)
 
   Dir.chdir("inspectorScandAll_reports") do
     out = File.open("out_file.txt","w")
-    out.puts(description)
+    out.puts(cve,"\n",description)
     out.close
     case type
     when "txt"
@@ -34,3 +34,5 @@ def file_convert(srv_name)
   end
 
 end
+
+# => file_convert("vsftpd 2.3.4") şeklinde çağırılır.
