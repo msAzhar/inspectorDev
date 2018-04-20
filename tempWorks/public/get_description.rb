@@ -1,15 +1,18 @@
 require 'open-uri' #URL'e HTTP isteğinde bulunur
 require 'nokogiri' #HTML'i parse etmeyi sağlar
 
-def get_description(service_name)
+module Description
 
-  url = "http://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=#{service_name}"
+  def Description.get_description(service_name)
 
-  page = Nokogiri::HTML(open(url))
+    url = "http://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=#{service_name}"
 
-  puts page.css('div#TableWithRules td')[0].text
-  puts page.css('div#TableWithRules td')[1].text
+    page = Nokogiri::HTML(open(url))
+
+    cve = page.css('div#TableWithRules td')[0].text
+    dsc = page.css('div#TableWithRules td')[1].text
+
+    return cve,dsc
+  end
 
 end
-
-get_description("vsftpd 2.3.4")

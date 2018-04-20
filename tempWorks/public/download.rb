@@ -1,2 +1,2 @@
-system("sudo apt-get update && sudo apt-get install texlive")
-system("sudo apt-get update && sudo apt-get install pandoc")
+system("sudo apt-get update && sudo apt-get -y install texlive")
+system("sudo apt-get update && sudo apt-get -y install pandoc")
