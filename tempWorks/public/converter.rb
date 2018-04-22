@@ -12,17 +12,20 @@ def file_convert(srv_name)
   puts "Lütfen istediğiniz dosya tipini yazınız: "
   type = gets.chomp
 
+
   cve,description = Description.get_description(srv_name)
 
   Dir.chdir("inspectorScandAll_reports") do
-    out = File.open("out_file.txt","w")
+    time = Time.new
+    t = time.strftime("%Y-%m-%d-%H:%M:%S")
+    out = File.new("out_file.txt","w")
     out.puts(cve,"\n",description)
     out.close
     case type
     when "txt"
-      system("pandoc out_file.txt -o report_file.txt")
+      system("pandoc out_file.txt -o report_file-"+ t + ".txt")
     when "pdf"
-      system("pandoc out_file.txt -o report_file.pdf")
+      system("pandoc out_file.txt -o report_file-#{t}.pdf")
     when "odt"
       system("pandoc out_file.txt -o report_file.odt")
     when "md"
@@ -35,4 +38,4 @@ def file_convert(srv_name)
 
 end
 
-# => file_convert("vsftpd 2.3.4") şeklinde çağırılır.
+file_convert("vsftpd 2.3.4")

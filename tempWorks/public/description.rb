@@ -11,19 +11,9 @@ def self.get_description(service_name)
 
   page = Nokogiri::HTML(open(url))
 
-  puts page.css('div#TableWithRules td')[1].text
-  end
-end
-
-
-def self.get_cve_no(service_name)
-
-  if !(service_name.empty?)
-  url = "http://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=#{service_name}"
-
-  page = Nokogiri::HTML(open(url))
-
-  puts page.css('div#TableWithRules td')[0].text
+  cve_id = page.css('div#TableWithRules td')[0].text
+  desc = page.css('div#TableWithRules td')[1].text
+  return cve_id,desc
   end
 end
 

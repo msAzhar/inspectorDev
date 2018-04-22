@@ -1,0 +1,6 @@
+Inspector ScanDAll
+"You can't eliminate the vulnerabilities you can't see..
+Inspector ScanDAll will find them all.."
+
+Usage:
+run inspector.sh
