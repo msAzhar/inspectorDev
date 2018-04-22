@@ -14,16 +14,16 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Inspector ScanDAll
-"You can't eliminate the vulnerabilities you can't see..
-Inspector ScanDAll will find them all.."
+"Göremediğiniz açıkları kapatamazsın..
+Inspector ScanDAll onları bulur.."
 
-Usage:
+Kullanım:
  ./inspector.sh []
 
-Common options
- -h :help option will give some information about tool.
+Genel seçenekler
+ -h :help seçeneği araç hakkında bazı bilgiler vermektedir.
 
-About:
+Hakkında:
  Inspector ScanDAll is a vulnerability assessment tool that performs 
  vulnerability scanning and offers solutions for these vulnerabilities.
  It also reports you vulnerabilities in different formats(e.g. .pdf, .odt, .doc  etc.)
