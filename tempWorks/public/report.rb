@@ -20,6 +20,20 @@ module Report
     t = time.strftime("%Y-%m-%d-%H:%M:%S")
     system("pandoc out_file.txt -o report_file-"+ t + "." + file_format)
     File.delete("out_file.txt")
+  
   end
+  
+  
+ def self.get_solution(solution_file)
+   Dir.chdir("..")
+   data=''
+   f = File.open(solution_file,"r") 
+   f.each_line do |line|
+     data+=line
+   end
+   Dir.chdir("inspectorScandAll_reports")
+   return data
+ end
+
 
 end

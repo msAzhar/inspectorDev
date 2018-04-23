@@ -1,0 +1,11 @@
+
+=========================================
+
+Solution
+
+Firstly, most of attacks occur because of using the old versions of the services.
+You must try to update your applications as frequently as possible.
+Also, you can and should disable unneeded services on your systems.
+Like reducing the number of entry points in your house,
+the more enrty points you eliminate the fewer places an intruder can break in.
+
