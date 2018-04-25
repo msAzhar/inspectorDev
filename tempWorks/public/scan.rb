@@ -29,6 +29,7 @@ bar = ProgressBar.new
   bar.increment!
 end
 
+puts "\n"
 #puts "\nHere is the list of opened ports on the host:".green
 Lang.found_vulns(lang)
 
@@ -50,7 +51,7 @@ bar2 = ProgressBar.new
   sleep 0.1
   bar2.increment!
 end
-
+puts "\n"
 #puts "\nHere is the list of possible vulnerabilities on existing services:".green
 Lang.list_vulns(lang)
 
@@ -68,7 +69,7 @@ for i in rs
   puts "CVSS Score:", lvl
   puts "\nDescription: "
   puts descr
-  f.puts("\nFor port: #{i[0].split[0]}\nCVE-id is: ",cve_id,"\n CVSS Score:",lvl,"\nDescription and Details: \n",descr)
+  f.puts("\nFor port: #{i[0].split[0]}, CVE-id is: ",cve_id,"\n CVSS Score:",lvl,"\nDescription and Details: \n","\n",descr)
   #Report.make_report(cve_id,descr)
 end
 solution = Report.get_solution('solution.txt')
@@ -82,6 +83,16 @@ Lang.file_formats(lang)
 
 f_format = gets.chomp
 Report.convert_report(f_format)
+puts "Please, wait..".yellow
+puts "Translatint to #{f_format}..".yellow
+bar3 = ProgressBar.new
+
+100.times do
+  sleep 0.2
+  bar3.increment!
+end
+
+#Report.add_mark(report)
 #puts "\nInspector ScanDAll: report file in #{f_format} format is under the inspectorScandAll_reports directory.".green
 Lang.report_in_dir(lang,f_format)
 #puts "\nScanning report file in #{f_format} format is under the inspectorScandAll_reports directory. Would you like to open it now? [Y/N]".green

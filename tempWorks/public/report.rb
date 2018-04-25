@@ -1,3 +1,5 @@
+require 'combine_pdf'
+
 module Report
 
   def self.make_dir
@@ -19,8 +21,25 @@ module Report
     time = Time.new
     t = time.strftime("%Y-%m-%d-%H:%M:%S")
     system("pandoc out_file.txt -o report_file-"+ t + "." + file_format)
-    File.delete("out_file.txt")
-  
+    File.delete("out_file.txt")  
+    latest_file = `ls -t | head -n 1`
+    return latest_file 
+  end
+
+  def self.add_mark(r)
+   # Dir.chdir("..")
+    puts `pwd`
+    inspector_logo = CombinePDF.load("watermark.pdf").pages[0]
+  #Dir.chdir("inspectorScandAll_reports")
+    latest_file = `ls -t | head -n 1 2>/dev/null`
+    puts "#{latest_file}"
+    report_file = CombinePDF.load "\"#{latest_file}\""
+    # inject the logo to each page in the content
+    report_file.pages.each {|page| page << inspector_logo}
+
+    # save to a new file, with the logo.
+    report_file.save "deneme.pdf"
+   
   end
   
   
