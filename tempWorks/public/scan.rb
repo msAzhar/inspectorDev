@@ -14,7 +14,7 @@ Lang.enter_ip(lang)
 #puts "\nPlease, enter a target ip:".light_blue
 ip=gets.chomp
 
-system("sudo nmap -sS -sV -n #{ip} > output.txt")
+#system("sudo nmap -sS -sV -n #{ip} > output.txt")
 
 result = File.read('output.txt')
 rs= result.scan(/^(\d+.*)$/)
@@ -57,15 +57,18 @@ Lang.list_vulns(lang)
 Report.make_dir #prepare a folder for reports
 File.open("out_file.txt","w") do |f|
 f.puts("Inspector ScanDAll Reports\n")
+f.puts("\nHere is the list of open ports on scanned system. (Scanned Host is:#{ip})\n")
 #f.puts(Lang.report(lang)+"\n")
 for i in rs  
   cve_id,descr = Description.get_description(i[0].split[3..-1].join ' ')
-
+  lvl = Description.get_lvl(cve_id)
   puts "For port: #{i[0].split[0]}"
   puts "CVE-id is:", cve_id
+#cvss score (Common Vulnerability Scoring System Calculator) 
+  puts "CVSS Score:", lvl
   puts "\nDescription: "
   puts descr
-  f.puts("\n",cve_id,"\n",descr)
+  f.puts("\nFor port: #{i[0].split[0]}\nCVE-id is: ",cve_id,"\n CVSS Score:",lvl,"\nDescription and Details: \n",descr)
   #Report.make_report(cve_id,descr)
 end
 solution = Report.get_solution('solution.txt')
@@ -91,11 +94,6 @@ when "n","N","н","Н","h","H"
  exit 
 end
  
-
-
-
-
-
 
 
 

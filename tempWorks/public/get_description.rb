@@ -14,5 +14,17 @@ module Description
 
     return cve,dsc
   end
+  
+    def Description.get_lvl(cve_id)
+    if !(cve_id.empty?)
+    url = "https://www.cvedetails.com/cve-details.php?t=1&cve_id=#{cve_id}"
+    page = Nokogiri::HTML(open(url))
+    score = page.css('div.cvssbox').text
+    puts score
+    end
+end
 
 end
+
+
+Description.get_lvl("CVE-2016-10499")
